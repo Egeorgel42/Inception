@@ -1,0 +1,8 @@
+services:
+  nginx:
+    build: requirements/nginx/
+    image: nginx
+    ports:
+      - "443:443"
+    extra_hosts:
+      - "egeorgel.42.fr:127.0.0.1"
