@@ -18,7 +18,7 @@ volumes:
 services:
   mariadb:
     build: requirements/mariadb
-    image: mariadb
+    container_name: mariadb
     networks:
       - inception
     env_file:
@@ -29,8 +29,8 @@ services:
     expose:
       - 3306
   wordpress:
-    build: requirements/wordpress/
-    image: wordpress
+    build: requirements/wordpress
+    container_name: wordpress
     networks:
       - inception
     expose:
@@ -40,16 +40,15 @@ services:
     volumes:
       - wordpress:/var/www/wordpress
     restart: always
-    env_file: .env
+    env_file:
+      - .env
   nginx:
     build: requirements/nginx/
-    image: nginx
+    container_name: nginx
     networks:
       - inception
     ports:
       - "443:443"
-    extra_hosts:
-      - "egeorgel.42.fr:127.0.0.1"
     depends_on:
       - wordpress
     volumes:

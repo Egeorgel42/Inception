@@ -1,4 +1,5 @@
 build:
+	mkdir -p ~/data/wordpress; mkdir -p ~/data/mariadb
 	docker-compose -f srcs/docker-compose.yml build
 up: build
 	docker-compose -f srcs/docker-compose.yml up -d
